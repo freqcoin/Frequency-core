@@ -1,0 +1,8 @@
+/usr/bin/frequency-cli		--	gen_context(system_u:object_r:frequency_exec_t,s0)
+/usr/sbin/frequencyd		--	gen_context(system_u:object_r:frequency_exec_t,s0)
+/usr/lib(64)?/frequency/frequencyd		--	gen_context(system_u:object_r:frequency_exec_t,s0)
+
+/etc/frequency(/.*)?		gen_context(system_u:object_r:frequency_conf_t,s0)
+/var/lib/frequency(/.*)?		gen_context(system_u:object_r:frequency_var_lib_t,s0)
+
+(/var)?/run/frequencyd(/.*)?   gen_context(system_u:object_r:frequency_var_run_t,s0)

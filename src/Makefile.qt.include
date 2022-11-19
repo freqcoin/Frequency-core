@@ -1,0 +1,860 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/frequency-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# frequency qt core #
+QT_TS = \
+  qt/locale/frequency_bg.ts \
+  qt/locale/frequency_ca.ts \
+  qt/locale/frequency_cs.ts \
+  qt/locale/frequency_da.ts \
+  qt/locale/frequency_de.ts \
+  qt/locale/frequency_en.ts \
+  qt/locale/frequency_en_GB.ts \
+  qt/locale/frequency_en_US.ts \
+  qt/locale/frequency_eo.ts \
+  qt/locale/frequency_es.ts \
+  qt/locale/frequency_es_ES.ts \
+  qt/locale/frequency_fi.ts \
+  qt/locale/frequency_fr_FR.ts \
+  qt/locale/frequency_hi_IN.ts \
+  qt/locale/frequency_hr.ts \
+  qt/locale/frequency_hr_HR.ts \
+  qt/locale/frequency_it.ts \
+  qt/locale/frequency_ja.ts \
+  qt/locale/frequency_ko_KR.ts \
+  qt/locale/frequency_lt_LT.ts \
+  qt/locale/frequency_nl.ts \
+  qt/locale/frequency_pl.ts \
+  qt/locale/frequency_pt.ts \
+  qt/locale/frequency_pt_BR.ts \
+  qt/locale/frequency_ro_RO.ts \
+  qt/locale/frequency_ru.ts \
+  qt/locale/frequency_sk.ts \
+  qt/locale/frequency_sv.ts \
+  qt/locale/frequency_tr.ts \
+  qt/locale/frequency_uk.ts \
+  qt/locale/frequency_vi.ts \
+  qt/locale/frequency_zh_CN.ts \
+  qt/locale/frequency_zh_TW.ts
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/blockexplorer.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/governancepage.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/frequency/forms/loadingdialog.ui \
+  qt/forms/zFRQcontroldialog.ui \
+  qt/frequency/forms/snackbar.ui \
+  qt/frequency/forms/navmenuwidget.ui \
+  qt/frequency/forms/lockunlock.ui \
+  qt/frequency/forms/expandablebutton.ui \
+  qt/frequency/forms/receivedialog.ui \
+  qt/frequency/forms/walletpassworddialog.ui \
+  qt/frequency/forms/topbar.ui \
+  qt/frequency/forms/txrow.ui \
+  qt/frequency/forms/dashboardwidget.ui \
+  qt/frequency/forms/coincontrolpivwidget.ui \
+  qt/frequency/forms/addresslabelrow.ui \
+  qt/frequency/forms/contactdropdownrow.ui \
+  qt/frequency/forms/mninfodialog.ui \
+  qt/frequency/forms/optionbutton.ui \
+  qt/frequency/forms/masternodewizarddialog.ui \
+  qt/frequency/forms/mnrow.ui \
+  qt/frequency/forms/masternodeswidget.ui \
+  qt/frequency/forms/myaddressrow.ui \
+  qt/frequency/forms/csrow.ui \
+  qt/frequency/forms/sendchangeaddressdialog.ui \
+  qt/frequency/forms/sendconfirmdialog.ui \
+  qt/frequency/forms/sendcustomfeedialog.ui \
+  qt/frequency/forms/sendchangeaddressdialog.ui \
+  qt/frequency/forms/sendmultirow.ui \
+  qt/frequency/forms/send.ui \
+  qt/frequency/forms/addnewaddressdialog.ui \
+  qt/frequency/forms/addnewcontactdialog.ui \
+  qt/frequency/forms/requestdialog.ui \
+  qt/frequency/forms/receivewidget.ui \
+  qt/frequency/forms/tooltipmenu.ui \
+  qt/frequency/forms/addresseswidget.ui \
+  qt/frequency/forms/defaultdialog.ui \
+  qt/frequency/forms/denomgenerationdialog.ui \
+  qt/frequency/forms/privacywidget.ui \
+  qt/frequency/forms/coldstakingwidget.ui \
+  qt/frequency/settings/forms/settingsbackupwallet.ui \
+  qt/frequency/settings/forms/settingsbittoolwidget.ui \
+  qt/frequency/settings/forms/settingsconsolewidget.ui \
+  qt/frequency/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/frequency/settings/forms/settingsfaqwidget.ui \
+  qt/frequency/settings/forms/settingsinformationwidget.ui \
+  qt/frequency/settings/forms/settingsmainoptionswidget.ui \
+  qt/frequency/settings/forms/settingsmultisenddialog.ui \
+  qt/frequency/settings/forms/settingsmultisendwidget.ui \
+  qt/frequency/settings/forms/settingssignmessagewidgets.ui \
+  qt/frequency/settings/forms/settingswalletoptionswidget.ui \
+  qt/frequency/settings/forms/settingswalletrepairwidget.ui \
+  qt/frequency/settings/forms/settingswidget.ui \
+  qt/frequency/forms/welcomecontentwidget.ui \
+  qt/frequency/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/moc_bitcoinamountfield.cpp \
+  qt/frequency/moc_frequencygui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_blockexplorer.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_governancepage.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_proposalframe.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/frequency/moc_loadingdialog.cpp \
+  qt/moc_zFRQcontroldialog.cpp \
+  qt/frequency/moc_pwidget.cpp \
+  qt/frequency/moc_snackbar.cpp \
+  qt/frequency/moc_navmenuwidget.cpp \
+  qt/frequency/moc_lockunlock.cpp \
+  qt/frequency/moc_expandablebutton.cpp \
+  qt/frequency/moc_furabstractlistitemdelegate.cpp \
+  qt/frequency/moc_receivedialog.cpp \
+  qt/frequency/moc_walletpassworddialog.cpp \
+  qt/frequency/moc_pfborderimage.cpp \
+  qt/frequency/moc_topbar.cpp \
+  qt/frequency/moc_txrow.cpp \
+  qt/frequency/moc_dashboardwidget.cpp \
+  qt/frequency/moc_coincontrolpivwidget.cpp \
+  qt/frequency/moc_addresslabelrow.cpp \
+  qt/frequency/moc_contactdropdownrow.cpp \
+  qt/frequency/moc_mninfodialog.cpp \
+  qt/frequency/moc_optionbutton.cpp \
+  qt/frequency/moc_coldstakingmodel.cpp \
+  qt/frequency/moc_mnmodel.cpp \
+  qt/frequency/moc_masternodewizarddialog.cpp \
+  qt/frequency/moc_mnrow.cpp \
+  qt/frequency/moc_masternodeswidget.cpp \
+  qt/frequency/moc_myaddressrow.cpp \
+  qt/frequency/moc_csrow.cpp \
+  qt/frequency/moc_contactsdropdown.cpp \
+  qt/frequency/moc_sendchangeaddressdialog.cpp \
+  qt/frequency/moc_sendconfirmdialog.cpp \
+  qt/frequency/moc_sendcustomfeedialog.cpp \
+  qt/frequency/moc_sendchangeaddressdialog.cpp \
+  qt/frequency/moc_sendmultirow.cpp \
+  qt/frequency/moc_send.cpp \
+  qt/frequency/moc_addnewaddressdialog.cpp \
+  qt/frequency/moc_addnewcontactdialog.cpp \
+  qt/frequency/moc_requestdialog.cpp \
+  qt/frequency/moc_receivewidget.cpp \
+  qt/frequency/moc_tooltipmenu.cpp \
+  qt/frequency/moc_addresseswidget.cpp \
+  qt/frequency/moc_defaultdialog.cpp \
+  qt/frequency/moc_denomgenerationdialog.cpp \
+  qt/frequency/moc_privacywidget.cpp \
+  qt/frequency/moc_coldstakingwidget.cpp \
+  qt/frequency/settings/moc_settingsbackupwallet.cpp \
+  qt/frequency/settings/moc_settingsbittoolwidget.cpp \
+  qt/frequency/settings/moc_settingsconsolewidget.cpp \
+  qt/frequency/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/frequency/settings/moc_settingsfaqwidget.cpp \
+  qt/frequency/settings/moc_settingsinformationwidget.cpp \
+  qt/frequency/settings/moc_settingsmainoptionswidget.cpp \
+  qt/frequency/settings/moc_settingsmultisenddialog.cpp \
+  qt/frequency/settings/moc_settingsmultisendwidget.cpp \
+  qt/frequency/settings/moc_settingssignmessagewidgets.cpp \
+  qt/frequency/settings/moc_settingswalletoptionswidget.cpp \
+  qt/frequency/settings/moc_settingswalletrepairwidget.cpp \
+  qt/frequency/settings/moc_settingswidget.cpp \
+  qt/frequency/moc_welcomecontentwidget.cpp \
+  qt/frequency/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/frequency.moc \
+  qt/bitcoinamountfield.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/frequency/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_frequency.cpp
+QT_QRC = qt/frequency.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_frequency_locale.cpp
+QT_QRC_LOCALE = qt/frequency_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/bitcoinamountfield.h \
+  qt/frequency/frequencygui.h \
+  qt/bitcoinunits.h \
+  qt/blockexplorer.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/governancepage.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/proposalframe.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/frequency/prunnable.h \
+  qt/frequency/pfborderimage.h \
+  qt/frequency/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/zFRQcontroldialog.h \
+  qt/frequency/pwidget.h \
+  qt/frequency/guitransactionsutils.h \
+  qt/frequency/snackbar.h \
+  qt/frequency/navmenuwidget.h \
+  qt/frequency/lockunlock.h \
+  qt/frequency/receivedialog.h \
+  qt/frequency/furlistrow.h \
+  qt/frequency/furabstractlistitemdelegate.h \
+  qt/frequency/txviewholder.h \
+  qt/frequency/qtutils.h \
+  qt/frequency/expandablebutton.h \
+  qt/frequency/walletpassworddialog.h \
+  qt/frequency/topbar.h \
+  qt/frequency/txrow.h \
+  qt/frequency/addressholder.h \
+  qt/frequency/addressfilterproxymodel.h \
+  qt/frequency/dashboardwidget.h \
+  qt/frequency/coincontrolpivwidget.h \
+  qt/frequency/addresslabelrow.h \
+  qt/frequency/contactdropdownrow.h \
+  qt/frequency/mninfodialog.h \
+  qt/frequency/optionbutton.h \
+  qt/frequency/coldstakingmodel.h \
+  qt/frequency/mnmodel.h \
+  qt/frequency/masternodewizarddialog.h \
+  qt/frequency/mnrow.h \
+  qt/frequency/masternodeswidget.h \
+  qt/frequency/myaddressrow.h \
+  qt/frequency/csrow.h \
+  qt/frequency/contactsdropdown.h \
+  qt/frequency/sendchangeaddressdialog.h \
+  qt/frequency/sendconfirmdialog.h \
+  qt/frequency/sendcustomfeedialog.h \
+  qt/frequency/sendchangeaddressdialog.h \
+  qt/frequency/sendmultirow.h \
+  qt/frequency/send.h \
+  qt/frequency/addnewaddressdialog.h \
+  qt/frequency/addnewcontactdialog.h \
+  qt/frequency/requestdialog.h \
+  qt/frequency/receivewidget.h \
+  qt/frequency/tooltipmenu.h \
+  qt/frequency/addresseswidget.h \
+  qt/frequency/defaultdialog.h \
+  qt/frequency/denomgenerationdialog.h \
+  qt/frequency/privacywidget.h \
+  qt/frequency/coldstakingwidget.h \
+  qt/frequency/settings/settingsbackupwallet.h \
+  qt/frequency/settings/settingsbittoolwidget.h \
+  qt/frequency/settings/settingsconsolewidget.h \
+  qt/frequency/settings/settingsdisplayoptionswidget.h \
+  qt/frequency/settings/settingsfaqwidget.h \
+  qt/frequency/settings/settingsinformationwidget.h \
+  qt/frequency/settings/settingsmainoptionswidget.h \
+  qt/frequency/settings/settingsmultisenddialog.h \
+  qt/frequency/settings/settingsmultisendwidget.h \
+  qt/frequency/settings/settingssignmessagewidgets.h \
+  qt/frequency/settings/settingswalletoptionswidget.h \
+  qt/frequency/settings/settingswalletrepairwidget.h \
+  qt/frequency/settings/settingswidget.h \
+  qt/frequency/welcomecontentwidget.h \
+  qt/frequency/splash.h
+
+RES_ICONS = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/automint_active.png \
+  qt/res/icons/automint_inactive.png \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0_16.png \
+  qt/res/icons/connect1_16.png \
+  qt/res/icons/connect2_16.png \
+  qt/res/icons/connect3_16.png \
+  qt/res/icons/connect4_16.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/masternodes.png \
+  qt/res/icons/onion.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/qrcode.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/receive.png \
+  qt/res/icons/receive_dark.png \
+  qt/res/icons/privacy.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/send.png \
+  qt/res/icons/send_dark.png \
+  qt/res/icons/governance.png \
+  qt/res/icons/governance_dark.png \
+  qt/res/icons/staking_active.png \
+  qt/res/icons/staking_inactive.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/trade.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/res/icons/unit_frequency.png \
+  qt/res/icons/unit_mfrequency.png \
+  qt/res/icons/unit_ufrequency.png \
+  qt/res/icons/unit_tfrequency.png \
+  qt/res/icons/unit_tmfrequency.png \
+  qt/res/icons/unit_tufrequency.png \
+  qt/res/icons/yesvote.png \
+  qt/res/icons/novote.png \
+  qt/res/icons/abstainvote.png \
+  qt/frequency/res/img/bg-dashboard-banner.png \
+  qt/frequency/res/img/bg-multi-number-dark.svg \
+  qt/frequency/res/img/ic-check-locked.svg \
+  qt/frequency/res/img/ic-nav-address.svg \
+  qt/frequency/res/img/ic-update.svg \
+  qt/frequency/res/img/bg-multi-number.svg \
+  qt/frequency/res/img/ic-check-mint-off.svg \
+  qt/frequency/res/img/ic-nav-cold-staking.svg \
+  qt/frequency/res/img/ic-nav-cold-staking-active.svg \
+  qt/frequency/res/img/ic-nav-dashboard-active.svg \
+  qt/frequency/res/img/ic-wallet-status-locked.svg \
+  qt/frequency/res/img/bg-splash.svg \
+  qt/frequency/res/img/bg-splash.png \
+  qt/frequency/res/img/ic-check-mint.svg \
+  qt/frequency/res/img/ic-nav-dashboard-hover.svg \
+  qt/frequency/res/img/ic-wallet-status-staking.svg \
+  qt/frequency/res/img/ic-check-peers-off.svg \
+  qt/frequency/res/img/ic-nav-dashboard.svg \
+  qt/frequency/res/img/ic-wallet-status-unlocked.svg \
+  qt/frequency/res/img/ic-check-peers.svg \
+  qt/frequency/res/img/ic-nav-master-active.svg \
+  qt/frequency/res/img/ic-watch-password-white.svg \
+  qt/frequency/res/img/bg-welcome-container.jpg \
+  qt/frequency/res/img/bg-welcome-container.png \
+  qt/frequency/res/img/bg-welcome-container.svg \
+  qt/frequency/res/img/bg-welcome-container@2x.png \
+  qt/frequency/res/img/bg-welcome-container@3x.png \
+  qt/frequency/res/img/ic-check-staking-off.svg \
+  qt/frequency/res/img/ic-nav-master-hover.svg \
+  qt/frequency/res/img/ic-watch-password.svg \
+  qt/frequency/res/img/bg-welcome.jpg \
+  qt/frequency/res/img/bg-welcome.svg \
+  qt/frequency/res/img/bg-welcome@2x.jpg \
+  qt/frequency/res/img/bg-welcome@3x.jpg \
+  qt/frequency/res/img/bg-welcome.png \
+  qt/frequency/res/img/ic-check-staking.svg \
+  qt/frequency/res/img/ic-nav-master.svg \
+  qt/frequency/res/img/img-dashboard-banner.jpg \
+  qt/frequency/res/img/btn-radio-active.svg \
+  qt/frequency/res/img/ic-check-sync-off.svg \
+  qt/frequency/res/img/ic-nav-privacy-active.svg \
+  qt/frequency/res/img/img-empty-contacts.svg \
+  qt/frequency/res/img/btn-radio-off.svg \
+  qt/frequency/res/img/ic-check-sync.png \
+  qt/frequency/res/img/ic-nav-privacy-hover.svg \
+  qt/frequency/res/img/img-empty-dark-contacts.svg \
+  qt/frequency/res/img/ic-contact-arrow-down.svg \
+  qt/frequency/res/img/ic-contact-arrow-down-white.svg \
+  qt/frequency/res/img/ic-check-sync.svg \
+  qt/frequency/res/img/ic-check-faq.svg \
+  qt/frequency/res/img/ic-nav-privacy.svg \
+  qt/frequency/res/img/img-empty-dark-error.svg \
+  qt/frequency/res/img/ic-add-label.svg \
+  qt/frequency/res/img/ic-pending.svg \
+  qt/frequency/res/img/ic-check-theme-dark.svg \
+  qt/frequency/res/img/ic-nav-receive-active.svg \
+  qt/frequency/res/img/img-empty-dark-masternode.svg \
+  qt/frequency/res/img/ic-add-liliac.svg \
+  qt/frequency/res/img/ic-check-theme-light.svg \
+  qt/frequency/res/img/ic-nav-receive-hover.svg \
+  qt/frequency/res/img/img-empty-dark-multisend.svg \
+  qt/frequency/res/img/ic-add-purple.svg \
+  qt/frequency/res/img/ic-check-white.svg \
+  qt/frequency/res/img/ic-nav-receive.svg \
+  qt/frequency/res/img/img-empty-dark-peers.svg \
+  qt/frequency/res/img/ic-add.svg \
+  qt/frequency/res/img/ic-check.svg \
+  qt/frequency/res/img/ic-nav-send-active.svg \
+  qt/frequency/res/img/img-empty-dark-staking-off.svg \
+  qt/frequency/res/img/img-empty-dark-staking-on.svg \
+  qt/frequency/res/img/ic-address-book-grey.svg \
+  qt/frequency/res/img/ic-chevron-left.svg \
+  qt/frequency/res/img/ic-nav-send-hover.svg \
+  qt/frequency/res/img/img-empty-dark-transactions.svg \
+  qt/frequency/res/img/ic-address-book-white.svg \
+  qt/frequency/res/img/ic-chevron-right.svg \
+  qt/frequency/res/img/ic-nav-send.svg \
+  qt/frequency/res/img/img-empty-error.svg \
+  qt/frequency/res/img/ic-address-book.svg \
+  qt/frequency/res/img/ic-clear-liliac.svg \
+  qt/frequency/res/img/ic-nav-settings-active.svg \
+  qt/frequency/res/img/img-empty-masternode.svg \
+  qt/frequency/res/img/ic-address-send-white.svg \
+  qt/frequency/res/img/ic-clear-purple.svg \
+  qt/frequency/res/img/ic-nav-settings-hover.svg \
+  qt/frequency/res/img/img-empty-multisend.svg \
+  qt/frequency/res/img/ic-address-send.svg \
+  qt/frequency/res/img/ic-close-white.svg \
+  qt/frequency/res/img/ic-nav-settings.svg \
+  qt/frequency/res/img/img-empty-peers.svg \
+  qt/frequency/res/img/img-empty-privacy.svg \
+  qt/frequency/res/img/img-empty-privacy-dark.svg \
+  qt/frequency/res/img/ic-arrow-drop-down-white.svg \
+  qt/frequency/res/img/ic-close.svg \
+  qt/frequency/res/img/ic-radio-liliac-on.svg \
+  qt/frequency/res/img/img-empty-staking-off.svg \
+  qt/frequency/res/img/ic-arrow-drop-down.svg \
+  qt/frequency/res/img/ic-coin-piv.svg \
+  qt/frequency/res/img/ic-receive-off.svg \
+  qt/frequency/res/img/img-empty-staking-on.svg \
+  qt/frequency/res/img/ic-arrow-drop-up-white.svg \
+  qt/frequency/res/img/ic-coin-zFRQ.png \
+  qt/frequency/res/img/ic-receive-on.svg \
+  qt/frequency/res/img/img-empty-transactions.svg \
+  qt/frequency/res/img/ic-arrow-drop-up.svg \
+  qt/frequency/res/img/ic-coin-zFRQ.svg \
+  qt/frequency/res/img/ic-received.svg \
+  qt/frequency/res/img/img-logo-frequency.png \
+  qt/frequency/res/img/ic-arrow-drop-white-down.svg \
+  qt/frequency/res/img/ic-combo-box.svg \
+  qt/frequency/res/img/ic-send.svg \
+  qt/frequency/res/img/img-logo-frequency@2x.png \
+  qt/frequency/res/img/ic-arrow-purple-down.svg \
+  qt/frequency/res/img/ic-connect.svg \
+  qt/frequency/res/img/ic-submenu-lock.svg \
+  qt/frequency/res/img/img-logo-frequency@3x.png \
+  qt/frequency/res/img/img-logo-frequency.svg \
+  qt/frequency/res/img/ic-arrow-right-white.svg \
+  qt/frequency/res/img/ic-arrow-left-white.svg \
+  qt/frequency/res/img/ic-arrow-left.svg \
+  qt/frequency/res/img/ic-copy-liliac.svg \
+  qt/frequency/res/img/ic-submenu-staking.svg \
+  qt/frequency/res/img/img-nav-logo-frequency.png \
+  qt/frequency/res/img/ic-arrow-right.svg \
+  qt/frequency/res/img/ic-copy.svg \
+  qt/frequency/res/img/ic-copy-big.svg \
+  qt/frequency/res/img/ic-copy-big-white.svg \
+  qt/frequency/res/img/ic-submenu-unlock.svg \
+  qt/frequency/res/img/img-nav-logo.png \
+  qt/frequency/res/img/ic-arrow-white-left.svg \
+  qt/frequency/res/img/ic-exit.svg \
+  qt/frequency/res/img/ic-switch-liliac-on.svg \
+  qt/frequency/res/img/img-nav-logo.svg \
+  qt/frequency/res/img/ic-arrow-white-right.svg \
+  qt/frequency/res/img/ic-expand.svg \
+  qt/frequency/res/img/ic-switch-off.svg \
+  qt/frequency/res/img/img-qr-test-big.png \
+  qt/frequency/res/img/ic-check-active.svg \
+  qt/frequency/res/img/ic-folder.svg \
+  qt/frequency/res/img/ic-switch-on.svg \
+  qt/frequency/res/img/img-qr-test.png \
+  qt/frequency/res/img/ic-check-box.svg \
+  qt/frequency/res/img/ic-check-box-dark-active.svg \
+  qt/frequency/res/img/ic-check-box-indeterminate.svg \
+  qt/frequency/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/frequency/res/img/ic-label-liliac.svg \
+  qt/frequency/res/img/ic-transaction-warning.svg \
+  qt/frequency/res/img/ic-transaction-mint.svg \
+  qt/frequency/res/img/ic-transaction-mint-inactive.svg \
+  qt/frequency/res/img/ic-check-cold-staking.svg \
+  qt/frequency/res/img/ic-check-cold-staking-off.svg \
+  qt/frequency/res/img/ic-check-cold-staking-enabled.svg \
+  qt/frequency/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/frequency/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/frequency/res/img/img-qr.svg \
+  qt/frequency/res/img/ic-check-connect-off.svg \
+  qt/frequency/res/img/ic-label.svg \
+  qt/frequency/res/img/ic-transaction-received.svg \
+  qt/frequency/res/img/dark/ic-transaction-received.svg \
+  qt/frequency/res/img/dark/ic-transaction-warning.svg \
+  qt/frequency/res/img/dark/ic-transaction-mint.svg \
+  qt/frequency/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/frequency/res/img/ic-transaction-received-inactive.svg \
+  qt/frequency/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/frequency/res/img/img-welcome-step1.png \
+  qt/frequency/res/img/ic-check-connect.svg \
+  qt/frequency/res/img/ic-menu-hover.svg \
+  qt/frequency/res/img/ic-transaction-sent.svg \
+  qt/frequency/res/img/ic-transaction-sent-inactive.svg \
+  qt/frequency/res/img/dark/ic-transaction-sent.svg \
+  qt/frequency/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/frequency/res/img/img-welcome-step2.png \
+  qt/frequency/res/img/ic-check-dark.svg \
+  qt/frequency/res/img/ic-mint.svg \
+  qt/frequency/res/img/ic-transaction-staked.svg \
+  qt/frequency/res/img/ic-transaction-staked-inactive.svg \
+  qt/frequency/res/img/dark/ic-transaction-staked.svg \
+  qt/frequency/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/frequency/res/img/img-welcome-step3.png \
+  qt/frequency/res/img/ic-check-liliac-on.svg \
+  qt/frequency/res/img/ic-nav-address-active.svg \
+  qt/frequency/res/img/ic-unlock-staking.svg \
+  qt/frequency/res/img/img-welcome-step4.png \
+  qt/frequency/res/img/ic-check-locked-off.svg \
+  qt/frequency/res/img/ic-nav-address-hover.svg \
+  qt/frequency/res/img/ic-update-liliac.svg \
+  qt/frequency/res/img/ic-arrow-drop-down-purple.svg \
+  qt/frequency/res/img/ic-arrow-drop-up-purple.svg \
+  qt/frequency/res/img/ic-check-liliac-indeterminate.svg \
+  qt/frequency/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/frequency/res/img/ic-transaction-stake-delegated.svg \
+  qt/frequency/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/frequency/res/img/ic-transaction-stake-hot.svg \
+  qt/frequency/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/frequency/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/frequency/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/frequency/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/frequency/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/frequency/res/img/ic-transaction-cs-contract.svg \
+  qt/frequency/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/frequency/res/img/ic-check-box-indeterminate.svg \
+  qt/frequency/res/img/ani-loading-dark.gif \
+  qt/frequency/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/bitcoinamountfield.cpp \
+  qt/frequency/frequencygui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/blockexplorer.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/blockexplorer.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/governancepage.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/proposalframe.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/frequency/loadingdialog.cpp \
+  qt/zFRQcontroldialog.cpp \
+  qt/frequency/pwidget.cpp \
+  qt/frequency/guitransactionsutils.cpp \
+  qt/frequency/snackbar.cpp \
+  qt/frequency/navmenuwidget.cpp \
+  qt/frequency/lockunlock.cpp \
+  qt/frequency/receivedialog.cpp \
+  qt/frequency/furabstractlistitemdelegate.cpp \
+  qt/frequency/txviewholder.cpp \
+  qt/frequency/qtutils.cpp \
+  qt/frequency/expandablebutton.cpp \
+  qt/frequency/walletpassworddialog.cpp \
+  qt/frequency/topbar.cpp \
+  qt/frequency/txrow.cpp \
+  qt/frequency/addressholder.cpp \
+  qt/frequency/addressfilterproxymodel.cpp \
+  qt/frequency/dashboardwidget.cpp \
+  qt/frequency/coincontrolpivwidget.cpp \
+  qt/frequency/addresslabelrow.cpp \
+  qt/frequency/contactdropdownrow.cpp \
+  qt/frequency/contactsdropdown.cpp \
+  qt/frequency/optionbutton.cpp \
+  qt/frequency/mninfodialog.cpp \
+  qt/frequency/coldstakingmodel.cpp \
+  qt/frequency/mnmodel.cpp \
+  qt/frequency/masternodewizarddialog.cpp \
+  qt/frequency/mnrow.cpp \
+  qt/frequency/masternodeswidget.cpp \
+  qt/frequency/myaddressrow.cpp \
+  qt/frequency/csrow.cpp \
+  qt/frequency/sendchangeaddressdialog.cpp \
+  qt/frequency/sendconfirmdialog.cpp \
+  qt/frequency/sendcustomfeedialog.cpp \
+  qt/frequency/sendchangeaddressdialog.cpp \
+  qt/frequency/sendmultirow.cpp \
+  qt/frequency/send.cpp \
+  qt/frequency/addnewaddressdialog.cpp \
+  qt/frequency/addnewcontactdialog.cpp \
+  qt/frequency/requestdialog.cpp \
+  qt/frequency/receivewidget.cpp \
+  qt/frequency/tooltipmenu.cpp \
+  qt/frequency/addresseswidget.cpp \
+  qt/frequency/defaultdialog.cpp \
+  qt/frequency/denomgenerationdialog.cpp \
+  qt/frequency/privacywidget.cpp \
+  qt/frequency/coldstakingwidget.cpp \
+  qt/frequency/settings/settingsbackupwallet.cpp \
+  qt/frequency/settings/settingsbittoolwidget.cpp \
+  qt/frequency/settings/settingsconsolewidget.cpp \
+  qt/frequency/settings/settingsdisplayoptionswidget.cpp \
+  qt/frequency/settings/settingsfaqwidget.cpp \
+  qt/frequency/settings/settingsinformationwidget.cpp \
+  qt/frequency/settings/settingsmainoptionswidget.cpp \
+  qt/frequency/settings/settingsmultisenddialog.cpp \
+  qt/frequency/settings/settingsmultisendwidget.cpp \
+  qt/frequency/settings/settingssignmessagewidgets.cpp \
+  qt/frequency/settings/settingswalletoptionswidget.cpp \
+  qt/frequency/settings/settingswalletrepairwidget.cpp \
+  qt/frequency/settings/settingswidget.cpp \
+  qt/frequency/welcomecontentwidget.cpp \
+  qt/frequency/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png \
+  qt/res/images/frequency_logo_horizontal.png \
+  qt/res/images/downArrow_dark.png \
+  qt/res/images/downArrow_small_dark.png \
+  qt/res/images/downArrow_small.png \
+  qt/res/images/upArrow_small_dark.png \
+  qt/res/images/upArrow_small.png \
+  qt/res/images/leftArrow_small_dark.png \
+  qt/res/images/rightArrow_small_dark.png \
+  qt/res/images/qtreeview_selected.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/frequency/res/css/style_dark.css \
+  qt/frequency/res/css/style_light.css
+
+RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+BITCOIN_RC = qt/res/frequency-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_frequency_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# frequency-qt binary #
+qt_frequency_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_frequency_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_frequency_qt_SOURCES = qt/frequency.cpp
+if TARGET_DARWIN
+  qt_frequency_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_frequency_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_frequency_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_frequency_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_frequency_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_frequency_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_frequency_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_frequency_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/frequencystrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/frequencystrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/frequency.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/frequency_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name frequency_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name frequency $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_frequency_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+frequency_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_frequency_qt_OBJECTS) qt/frequency-qt$(EXEEXT) $(LIBBITCOINQT)
+
+frequency_qt : qt/frequency-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
