@@ -1,0 +1,11 @@
+[Protocol]
+exec=frequency-qt '%u'
+protocol=frequency
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

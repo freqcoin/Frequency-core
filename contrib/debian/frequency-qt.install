@@ -1,0 +1,6 @@
+usr/local/bin/frequency-qt usr/bin
+share/pixmaps/frequency32.xpm usr/share/pixmaps
+share/pixmaps/frequency16.xpm usr/share/pixmaps
+share/pixmaps/frequency128.png usr/share/pixmaps
+debian/frequency-qt.desktop usr/share/applications
+debian/frequency-qt.protocol usr/share/kde4/services/

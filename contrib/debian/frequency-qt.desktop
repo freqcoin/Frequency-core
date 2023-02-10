@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Frequency Core
+Comment=Frequency P2P Cryptocurrency
+Exec=frequency-qt %u
+Terminal=false
+Type=Application
+Icon=frequency128
+MimeType=x-scheme-handler/frequency;
+Categories=Office;Finance;
+StartupWMClass=Frequency-qt
+Name[en_US]=frequency-qt.desktop
